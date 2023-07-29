@@ -6,6 +6,9 @@ const backCanvas = createAnyCanvas("back");
 //make an on screen canvas to draw things
 const frontCanvas = createAnyCanvas("front");
 
+//make a title screen
+const titleScreen = new TitleScreen;
+
 // TODO: move into canvas module
 const paintSquare = () => {
     frontCanvas.ctx.fillStyle = '#FF0000';
@@ -35,7 +38,9 @@ const engineLoop = () => {
 }
 
 const title_screen = () => {
-    render();
+    //render();
+    paintBack();
+    titleScreen.paintStars();
     //TODO
     input = false;
     if (input) {
