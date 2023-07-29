@@ -1,42 +1,46 @@
-export class Velocity {
-    constructor(x, y) {
-        this.x = x;
-        this.y = y;
-    }
-}
 
-export class Body {
-    constructor(x, y, color, velocity) {
+class Body {
+    constructor(x, y, color, mass) {
         this.x = x;
         this.y = y;
         this.color = color;
-        this.velocity = velocity;
+        this.velocity_x = velocity_x;
+        this.velocity_y = velocity_y;
+        this.mass = mass;
+    }
+
+    applyForce(force_x, force_y) {
+        //TODO: implement
+        // this.velocity_x += force_x;
+        // this.velocity_y += force_y;
     }
 }
 
-export class Obstacle extends Body {
+class Obstacle extends Body {
 
 }
 
-export class Enemy extends Body {
+class Enemy extends Body {
     constructor(x, y, color, velocity, health) {
         super(x, y, color, velocity);
         this.health = health;  // represents the number of sides it has
     }
 }
 
-export class Player extends Body {
-    constructor(x, y, color, velocity, health) {
+class Player extends Body {
+    constructor(x, y, color, velocity, health, controller_uuid,) {
         super(x, y, color, velocity);
         this.health = health;
+        this.controller_uuid = controller_uuid;
     }
 }
 
-export class Ballistic {
-    constructor(x, y, velocity, polarity) {
+class Ballistic {
+    constructor(x, y, velocity_x, velocity_y, polarity) {
         this.x = x;
         this.y = y;
-        this.velocity = velocity;
+        this.velocity_x = velocity_x;
+        this.velocity_y = velocity_y;
         this.polarity = polarity;  // boolean, true for positive, false for negative
     }
 }

@@ -3,7 +3,7 @@ class GameState {
         this.obstacles = [];
         this.enemies = [];
         this.players = [];
-        this.players = [];
+        this.ballistics = [];
     }
 
 }

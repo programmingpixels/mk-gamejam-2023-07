@@ -5,6 +5,16 @@ const config = {
     bgColor: "#000000"
 };
 
+// TODO : return both required canvases
+const initializeCanvas = () => {
+    //make an off screen canvas to hold all the sprites
+    backCanvas = createAnyCanvas("back");
+
+    //make an on screen canvas to draw things
+    frontCanvas = createAnyCanvas("front");
+
+};
+
 const createAnyCanvas = (visible) => {
     if (visible = "front") {
         anyCanvas = document.getElementById("frontCanvas");
@@ -22,3 +32,8 @@ const paintBack = () => {   // draw the background color
     frontCanvas.ctx.fillStyle = config.bgColor;
     frontCanvas.ctx.fillRect(0, 0, config.canvasWidth, config.canvasHeight);
 };
+
+// TODO: predraw all the sprites to the back canvas
+const initialiseBackCanvas = () => {
+
+}
