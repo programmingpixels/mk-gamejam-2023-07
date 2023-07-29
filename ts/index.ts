@@ -5,7 +5,7 @@ import { ApplicationState } from "./states";
 
 const appState = new ApplicationState()
 
-const main = () => {
+export const main = () => {
     appState.update()
     appState.paint()
     window.requestAnimationFrame(main)
