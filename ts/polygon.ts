@@ -1,6 +1,6 @@
 const COLORS = [ "#4B0082", "#250041", "#120020" ]
 
-export class Star {
+export class Polygon {
     x: number;
     y: number;
     sides: number;
