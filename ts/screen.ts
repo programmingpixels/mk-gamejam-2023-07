@@ -1,4 +1,4 @@
-import { Star } from "./star";
+import { Star } from "./star.js";
 
 const CONFIG = {
     canvasWidth: 1000,

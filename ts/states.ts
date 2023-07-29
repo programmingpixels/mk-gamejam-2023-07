@@ -1,6 +1,6 @@
-import { Screen } from "./screen";
-import { Player, Enemy, Obstacle, Ballistic } from "./bodies";
-import { TitlePage } from "./titleScreen";
+import { Screen } from "./screen.js";
+import { Player, Enemy, Obstacle, Ballistic } from "./bodies.js";
+import { TitlePage } from "./titlePage.js";
 
 
 export class GameState {
