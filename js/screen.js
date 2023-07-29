@@ -22,9 +22,11 @@ class Screen {
             this.visibleCanvas.ctx.fillStyle = '#FF0000';
             this.visibleCanvas.ctx.fillRect((CONFIG.canvasWidth / 2) - 10, (CONFIG.canvasHeight / 2) - 10, 20, 20);
         };
-        this.paintStar = (star) => {
-            this.visibleCanvas.ctx.fillStyle = star.getColorHex();
-            this.visibleCanvas.ctx.fillRect(star.x, star.y, 1, 1);
+        this.paintStars = (stars) => {
+            stars.forEach(star => {
+                this.visibleCanvas.ctx.fillStyle = star.getColorHex();
+                this.visibleCanvas.ctx.fillRect(star.x, star.y, 1, 1);
+            });
         };
         //make an off screen canvas to hold all the sprites
         this.invisibleCanvas = document.createElement("canvas");
