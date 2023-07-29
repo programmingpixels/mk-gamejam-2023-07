@@ -1,28 +1,18 @@
-const frontCanvas = document.getElementById("frontCanvas");
-const fCtx = frontCanvas.getContext("2d"); // fCtx is the context for front canvas
 
-const config = {
-    canvasWidth: 1000,
-    canvasHeight: 800,
-};
+//make an off screen canvas to hold all the sprites
+const backCanvas = createAnyCanvas("back");
 
-frontCanvas.width = config.canvasWidth;
-frontCanvas.height = config.canvasHeight;
+//make an on screen canvas to draw things
+const frontCanvas = createAnyCanvas("front");
 
-
-
-const paintBack = () => {   // draw the background color
-    fCtx.fillStyle = '#000000';
-    fCtx.fillRect(0, 0, config.canvasWidth, config.canvasHeight);
-};
 
 const paintSquare = () => {
-    fCtx.fillStyle = '#FF0000';
-    fCtx.fillRect((config.canvasWidth/2)-10, (config.canvasHeight/2)-10, 20, 20);
+    frontCanvas.ctx.fillStyle = '#FF0000';
+    frontCanvas.ctx.fillRect((config.canvasWidth/2)-10, (config.canvasHeight/2)-10, 20, 20);
 };
 
 const render = () => {
-    fCtx.clearRect(0, 0, config.canvasWidth, config.canvasHeight);
+    frontCanvas.ctx.clearRect(0, 0, config.canvasWidth, config.canvasHeight);
     paintBack();
     paintSquare();
 }
