@@ -10,9 +10,14 @@ export class TitlePage {
         }
     }
 
-    update = () => {
+    update = (inputs: string[]): boolean => {
+        //TODO: implement options for however many players
+        if (inputs.includes("keyboard_space")) {
+            return false
+        }
         this.stars.forEach(star => {
             star.update()
         })
+        return true
     }
 }

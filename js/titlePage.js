@@ -1,10 +1,15 @@
 import { Star } from "./star.js";
 export class TitlePage {
     constructor(canvasWidth, canvasHeight, numOfStars = 20) {
-        this.update = () => {
+        this.update = (inputs) => {
+            //TODO: implement options for however many players
+            if (inputs.includes("keyboard_space")) {
+                return false;
+            }
             this.stars.forEach(star => {
                 star.update();
             });
+            return true;
         };
         this.stars = [];
         for (let i = 0; i < numOfStars; i++) {
