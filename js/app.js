@@ -182,3 +182,22 @@ define("index", ["require", "exports", "states"], function (require, exports, st
     //this kicks off the animating
     window.requestAnimationFrame(exports.main);
 });
+define("polygon", ["require", "exports"], function (require, exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.Polygon = void 0;
+    const COLORS = ["#4B0082", "#250041", "#120020"];
+    class Polygon {
+        constructor(x, y, sides, size) {
+            this.getColorHex = () => {
+                return COLORS[this.color];
+            };
+            this.x = x;
+            this.y = y;
+            this.sides = sides;
+            this.size = size;
+            this.color = Math.floor(Math.random() * COLORS.length);
+        }
+    }
+    exports.Polygon = Polygon;
+});
