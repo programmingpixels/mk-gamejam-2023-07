@@ -29,7 +29,6 @@ export interface Enemy extends Body {
 export interface Player extends Body {
     health: number
     controller_uuid: string
-
 }
 
 export enum RedBlue {

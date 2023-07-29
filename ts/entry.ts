@@ -1,6 +1,4 @@
 
-// TODO: make since call to initialse
-
 import { ApplicationState } from "./states.js";
 
 const appState = new ApplicationState()
