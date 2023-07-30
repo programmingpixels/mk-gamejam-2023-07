@@ -1,9 +1,11 @@
 import { Star } from "./star.js";
+import { Polygon } from "./polygon.js";
 
 const CONFIG = {
     canvasWidth: 1000,
-    canvasHeight: 800,
-    bgColor: "#000000"
+    canvasHeight: 1000,
+    bgColor: "#000000",
+    mainTitle: "- BASTEROIDS 4 - TOUCHING THE GNOME -",
 };
 
 
@@ -50,4 +52,36 @@ export class Renderer {
             this.visibleCanvas.ctx.fillRect(star.x, star.y, 1, 1)
         })
     }
+
+    paintTitle = (font: string, color: string) => {
+        this.visibleCanvas.ctx.fillStyle = color
+        this.visibleCanvas.ctx.font = font
+        this.visibleCanvas.ctx.textAlign = 'center'
+        this.visibleCanvas.ctx.textBaseline = 'middle'
+        this.visibleCanvas.ctx.fillText(CONFIG.mainTitle, (CONFIG.canvasWidth/2), (CONFIG.canvasHeight/4))
+    }
+
+    paintPressSpacebar = (font: string, color: string) => {
+        this.visibleCanvas.ctx.fillStyle = color
+        this.visibleCanvas.ctx.font = font
+        this.visibleCanvas.ctx.textAlign = 'center'
+        this.visibleCanvas.ctx.textBaseline = 'middle'
+        this.visibleCanvas.ctx.fillText("Press SPACEBAR to Start", (CONFIG.canvasWidth/2), (CONFIG.canvasHeight*0.75))
+    }
+
+    paintPolygon = (poly: Polygon) => {
+        this.visibleCanvas.ctx.beginPath();
+        this.visibleCanvas.ctx.moveTo (poly.x +  poly.radius * Math.cos(0), poly.y +  poly.radius *  Math.sin(0));
+        for (var i = 1; i <= poly.sides; i += 1) {
+            this.visibleCanvas.ctx.lineTo (poly.x + poly.radius * Math.cos(i * 2 * Math.PI / poly.sides), poly.y + poly.radius * Math.sin(i * 2 * Math.PI / poly.sides));
+        }
+        if ( poly.isFilled ) {
+            this.visibleCanvas.ctx.fillStyle
+        }
+        this.visibleCanvas.ctx.strokeStyle = poly.outlineColor;
+        this.visibleCanvas.ctx.lineWidth = 1;
+        this.visibleCanvas.ctx.stroke();
+    }
+    
+
 }
