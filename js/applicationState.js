@@ -40,7 +40,9 @@ export class ApplicationState {
             this.renderer.paintPolygon(this.titlePage.polygon, 500, 500);
         };
         this.paintGameState = () => {
-            throw new Error("Method not implemented.");
+            var _a, _b, _c;
+            // paint players
+            this.renderer.paintPolygon((_a = this.gameState) === null || _a === void 0 ? void 0 : _a.players[0].polygon, (_b = this.gameState) === null || _b === void 0 ? void 0 : _b.players[0].x, (_c = this.gameState) === null || _c === void 0 ? void 0 : _c.players[0].y);
         };
         this.renderer = new Renderer();
         this.titlePage = new TitlePage(this.renderer.visibleCanvas.width, this.renderer.visibleCanvas.height);

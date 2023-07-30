@@ -14,16 +14,16 @@ export class Body {
     velocity: Velocity
     mass: number
     rotation: number
-    // polygon: Polygon
+    polygon: Polygon
 
-    constructor(x: number, y: number, color: number, velocity: Velocity, mass: number) {
+    constructor(x: number, y: number, color: number, velocity: Velocity, mass: number, polygon: Polygon) {
         this.x = x
         this.y = y
         this.color = color
         this.velocity = velocity
         this.mass = mass
         this.rotation = 0
-        // this.polygon = new Polygon()
+        this.polygon = polygon
     }
 
     applyForce = (direction: number, magnitude: number, timeDelta: number) => {
@@ -49,7 +49,9 @@ export class Player extends Body {
     health: number
 
     constructor(health: number = 5) {
-        super(0, 0, 50, { x: 0, y: 0 }, 0)
+        const polygon = new Polygon(3, 10, "#FF0000", "#000000", true, true, true, true)
+
+        super(0, 0, 50, { x: 0, y: 0 }, 0, polygon)
         this.health = 5
     }
 

@@ -54,7 +54,11 @@ export class ApplicationState {
         this.renderer.paintPolygon(this.titlePage.polygon, 500, 500)
     }
     paintGameState = () => {
-        throw new Error("Method not implemented.");
+        // paint players
+        this.renderer.paintPolygon(
+            this.gameState?.players[0].polygon,
+            this.gameState?.players[0].x,
+            this.gameState?.players[0].y,
+        )
     }
-
 }

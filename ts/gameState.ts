@@ -32,13 +32,10 @@ export class GameState {
         this.players.forEach(player => { player.update(timeDelta, inputStates[0]) })
 
         console.log("updating game state")
-        //TODO: implement
     }
 
     addPlayer = () => {
-        const player = new Player(
-            100
-        )
+        const player = new Player()
         this.players.push(player)
     }
 
