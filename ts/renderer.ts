@@ -16,7 +16,7 @@ class BrushableHtmlCanvasElement extends HTMLCanvasElement {
 }
 
 
-export class Screen {
+export class Renderer {
     invisibleCanvas: BrushableHtmlCanvasElement
     visibleCanvas: BrushableHtmlCanvasElement
 

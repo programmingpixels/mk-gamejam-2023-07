@@ -1,14 +1,24 @@
+import { InputState } from "./inputs.js"
+
 export interface Velocity {
     x: number
     y: number
 }
 
-export interface Body {
+export class Body {
     x: number
     y: number
     color: number  // 0-100
     velocity: Velocity
     mass: number
+
+    constructor(x: number, y: number, color: number, velocity: Velocity, mass: number) {
+        this.x = x
+        this.y = y
+        this.color = color
+        this.velocity = velocity
+        this.mass = mass
+    }
 }
 
 // applyForce(force_x, force_y) {
@@ -26,9 +36,17 @@ export interface Enemy extends Body {
     health: number  // represents the number of sides it has
 }
 
-export interface Player extends Body {
+export class Player extends Body {
     health: number
-    controller_uuid: string
+
+    constructor(health: number) {
+        super(0, 0, 50, { x: 0, y: 0 }, 0)
+        this.health = 5
+    }
+
+    update = (timeDelta: number, inputState: InputState) => {
+        //TODO: implement
+    }
 }
 
 export enum RedBlue {

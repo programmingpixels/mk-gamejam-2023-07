@@ -8,15 +8,21 @@ export class GameState {
     ballistics: Ballistic[]
     lastUpdated: number
 
-    constructor() {
+    constructor(playerNum: number = 1) {
         this.obstacles = [];
         this.enemies = [];
         this.players = [];
         this.ballistics = [];
+
+        for (let i = 0; i < playerNum; i++) {
+            this.addPlayer()
+        }
+
+        // do this last
         this.lastUpdated = performance.now()
     }
 
-    update = () => {
+    update = (inputs) => {
         const updateTime = performance.now()
         const timeDelta = performance.now() - this.lastUpdated
         this.lastUpdated = updateTime
@@ -27,13 +33,11 @@ export class GameState {
         //TODO: implement
     }
 
-    createPlayer = () => {
-        //TODO: implement
-        // const player = new Player(
-        //     health = 100,
-        //     controller_uuid = "" "TODO: implement",
-        // )
-        // this.players.push(player)
+    addPlayer = () => {
+        const player = new Player(
+            100
+        )
+        this.players.push(player)
     }
 
 }

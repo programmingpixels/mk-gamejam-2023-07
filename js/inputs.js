@@ -1,9 +1,9 @@
-export class ControllerLayout {
-    constructor(up, left, right, firePostive, fireNegative) {
-        this.up = up;
-        this.left = left;
-        this.right = right;
-        this.firePostive = firePostive;
-        this.fireNegative = fireNegative;
+export class InputState {
+    constructor() {
+        this.up = false;
+        this.left = false;
+        this.right = false;
+        this.firePositive = false;
+        this.fireNegative = false;
     }
 }

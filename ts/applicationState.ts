@@ -1,14 +1,15 @@
 import { GameState } from "./gameState.js"
 import { TitlePage } from "./titlePage.js"
+import { Renderer } from "./renderer.js"
 
 export class ApplicationState {
     titlePage: TitlePage | undefined
     gameState: GameState | undefined
-    screen: Screen
+    renderer: Renderer
 
     constructor() {
-        this.screen = new Screen()
-        this.titlePage = new TitlePage(this.screen.visibleCanvas.width, this.screen.visibleCanvas.height)
+        this.renderer = new Renderer()
+        this.titlePage = new TitlePage(this.renderer.visibleCanvas.width, this.renderer.visibleCanvas.height)
     }
 
     update = () => {
@@ -28,7 +29,7 @@ export class ApplicationState {
     }
 
     paint = () => {
-        this.screen.paintBackgroundColor()
+        this.renderer.paintBackgroundColor()
 
         if (this.titlePage) {
             this.paintTitlePage()
@@ -45,7 +46,7 @@ export class ApplicationState {
 
     paintTitlePage = () => {
         if (this.titlePage?.stars) {
-            this.screen.paintStars(this.titlePage.stars)
+            this.renderer.paintStars(this.titlePage.stars)
         }
     }
     paintGameState = () => {
