@@ -33,12 +33,12 @@ export class Renderer {
             this.visibleCanvas.ctx.textBaseline = 'middle';
             this.visibleCanvas.ctx.fillText(CONFIG.mainTitle, (CONFIG.canvasWidth / 2), (CONFIG.canvasHeight / 4));
         };
-        this.paintPressSpacebar = (font, color) => {
+        this.paintPressStartGame = (font, color) => {
             this.visibleCanvas.ctx.fillStyle = color;
             this.visibleCanvas.ctx.font = font;
             this.visibleCanvas.ctx.textAlign = 'center';
             this.visibleCanvas.ctx.textBaseline = 'middle';
-            this.visibleCanvas.ctx.fillText("Press SPACEBAR to Start", (CONFIG.canvasWidth / 2), (CONFIG.canvasHeight * 0.75));
+            this.visibleCanvas.ctx.fillText("Press FIRE to Start", (CONFIG.canvasWidth / 2), (CONFIG.canvasHeight * 0.75));
         };
         this.paintPolygon = (poly) => {
             this.visibleCanvas.ctx.beginPath();

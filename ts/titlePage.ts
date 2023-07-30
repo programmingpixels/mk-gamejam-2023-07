@@ -1,5 +1,6 @@
 import { Star } from "./star.js";
 import { Polygon } from "./polygon.js";
+import { InputState } from "./inputs.js";
 
 export class TitlePage {
     stars: Star[]
@@ -13,9 +14,9 @@ export class TitlePage {
         }
     }
 
-    update = (inputs: string[]): boolean => {
+    update = (inputStates: InputState[]): boolean => {
         //TODO: implement options for however many players
-        if (inputs.includes("keyboard_space")) {
+        if (inputStates[0].fireRed || inputStates[0].fireBlue) {
             return false
         }
         this.stars.forEach(star => {

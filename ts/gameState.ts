@@ -1,4 +1,5 @@
 import { Player, Enemy, Obstacle, Ballistic } from "./bodies.js";
+import { InputState } from "./inputs.js";
 
 
 export class GameState {
@@ -22,12 +23,12 @@ export class GameState {
         this.lastUpdated = performance.now()
     }
 
-    update = (inputs) => {
+    update = (inputStates: InputState[]) => {
         const updateTime = performance.now()
         const timeDelta = performance.now() - this.lastUpdated
         this.lastUpdated = updateTime
 
-        this.players.forEach(player => { player.update(timeDelta) })
+        this.players.forEach(player => { player.update(timeDelta, inputStates[0]) })
 
         console.log("updating game state")
         //TODO: implement

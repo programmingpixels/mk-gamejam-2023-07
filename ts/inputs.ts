@@ -12,8 +12,8 @@ export class InputState {
     left: boolean = false
     right: boolean = false
     down: boolean = false
-    firePositive: boolean = false
-    fireNegative: boolean = false
+    fireRed: boolean = false
+    fireBlue: boolean = false
 }
 
 const PLAYER_1_INPUT_STATE = new InputState()
@@ -51,10 +51,10 @@ export const keyDownHandler = (e: KeyboardEvent) => {
         PLAYER_1_INPUT_STATE.down = true
     }
     else if (e.code == PLAYER_1_LAYOUT.fireRed) {
-        PLAYER_1_INPUT_STATE.firePositive = true
+        PLAYER_1_INPUT_STATE.fireRed = true
     }
     else if (e.code == PLAYER_1_LAYOUT.fireBlue) {
-        PLAYER_1_INPUT_STATE.fireNegative = true
+        PLAYER_1_INPUT_STATE.fireBlue = true
     }
 }
 
@@ -72,10 +72,10 @@ export const keyUpHandler = (e: KeyboardEvent) => {
         PLAYER_1_INPUT_STATE.down = false
     }
     else if (e.code == PLAYER_1_LAYOUT.fireRed) {
-        PLAYER_1_INPUT_STATE.firePositive = false
+        PLAYER_1_INPUT_STATE.fireRed = false
     }
     else if (e.code == PLAYER_1_LAYOUT.fireBlue) {
-        PLAYER_1_INPUT_STATE.fireNegative = false
+        PLAYER_1_INPUT_STATE.fireBlue = false
     }
 }
 
@@ -110,14 +110,14 @@ const updateGamepadInputState = () => {
             PLAYER_2_INPUT_STATE.down = false
         }
         if (buttons[PLAYER_2_LAYOUT.fireRed].pressed) {
-            PLAYER_2_INPUT_STATE.firePositive = true
+            PLAYER_2_INPUT_STATE.fireRed = true
         } else {
-            PLAYER_2_INPUT_STATE.firePositive = false
+            PLAYER_2_INPUT_STATE.fireRed = false
         }
         if (buttons[PLAYER_2_LAYOUT.fireBlue].pressed) {
-            PLAYER_2_INPUT_STATE.fireNegative = true
+            PLAYER_2_INPUT_STATE.fireBlue = true
         } else {
-            PLAYER_2_INPUT_STATE.fireNegative = false
+            PLAYER_2_INPUT_STATE.fireBlue = false
         }
 
         // for (var i in buttons) {

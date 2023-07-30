@@ -2,9 +2,9 @@ import { Star } from "./star.js";
 import { Polygon } from "./polygon.js";
 export class TitlePage {
     constructor(canvasWidth, canvasHeight, numOfStars = 100) {
-        this.update = (inputs) => {
+        this.update = (inputStates) => {
             //TODO: implement options for however many players
-            if (inputs.includes("keyboard_space")) {
+            if (inputStates[0].fireRed || inputStates[0].fireBlue) {
                 return false;
             }
             this.stars.forEach(star => {

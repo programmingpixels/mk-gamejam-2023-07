@@ -58,30 +58,30 @@ export class Renderer {
         this.visibleCanvas.ctx.font = font
         this.visibleCanvas.ctx.textAlign = 'center'
         this.visibleCanvas.ctx.textBaseline = 'middle'
-        this.visibleCanvas.ctx.fillText(CONFIG.mainTitle, (CONFIG.canvasWidth/2), (CONFIG.canvasHeight/4))
+        this.visibleCanvas.ctx.fillText(CONFIG.mainTitle, (CONFIG.canvasWidth / 2), (CONFIG.canvasHeight / 4))
     }
 
-    paintPressSpacebar = (font: string, color: string) => {
+    paintPressStartGame = (font: string, color: string) => {
         this.visibleCanvas.ctx.fillStyle = color
         this.visibleCanvas.ctx.font = font
         this.visibleCanvas.ctx.textAlign = 'center'
         this.visibleCanvas.ctx.textBaseline = 'middle'
-        this.visibleCanvas.ctx.fillText("Press SPACEBAR to Start", (CONFIG.canvasWidth/2), (CONFIG.canvasHeight*0.75))
+        this.visibleCanvas.ctx.fillText("Press FIRE to Start", (CONFIG.canvasWidth / 2), (CONFIG.canvasHeight * 0.75))
     }
 
     paintPolygon = (poly: Polygon) => {
         this.visibleCanvas.ctx.beginPath();
-        this.visibleCanvas.ctx.moveTo (poly.x +  poly.radius * Math.cos(0), poly.y +  poly.radius *  Math.sin(0));
+        this.visibleCanvas.ctx.moveTo(poly.x + poly.radius * Math.cos(0), poly.y + poly.radius * Math.sin(0));
         for (var i = 1; i <= poly.sides; i += 1) {
-            this.visibleCanvas.ctx.lineTo (poly.x + poly.radius * Math.cos(i * 2 * Math.PI / poly.sides), poly.y + poly.radius * Math.sin(i * 2 * Math.PI / poly.sides));
+            this.visibleCanvas.ctx.lineTo(poly.x + poly.radius * Math.cos(i * 2 * Math.PI / poly.sides), poly.y + poly.radius * Math.sin(i * 2 * Math.PI / poly.sides));
         }
-        if ( poly.isFilled ) {
+        if (poly.isFilled) {
             this.visibleCanvas.ctx.fillStyle
         }
         this.visibleCanvas.ctx.strokeStyle = poly.outlineColor;
         this.visibleCanvas.ctx.lineWidth = 1;
         this.visibleCanvas.ctx.stroke();
     }
-    
+
 
 }
