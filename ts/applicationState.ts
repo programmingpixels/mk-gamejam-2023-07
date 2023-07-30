@@ -59,6 +59,7 @@ export class ApplicationState {
             this.gameState?.players[0].polygon,
             this.gameState?.players[0].x,
             this.gameState?.players[0].y,
+            this.gameState?.players[0].rotation,
         )
     }
 }

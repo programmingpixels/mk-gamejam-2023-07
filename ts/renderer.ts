@@ -1,5 +1,6 @@
 import { Star } from "./star.js";
 import { Polygon } from "./polygon.js";
+import { toRadians } from "./utils.js";
 
 const CONFIG = {
     canvasWidth: 1000,
@@ -69,7 +70,8 @@ export class Renderer {
         this.visibleCanvas.ctx.fillText("Press FIRE to Start", (CONFIG.canvasWidth / 2), (CONFIG.canvasHeight * 0.75))
     }
 
-    paintPolygon = (poly: Polygon, x: number, y: number) => {
+    paintPolygon = (poly: Polygon, x: number, y: number, rotation_d: number) => {
+        let rotation_r = toRadians(rotation_d)
         this.visibleCanvas.ctx.beginPath();
         this.visibleCanvas.ctx.moveTo(x + poly.radius * Math.cos(0), y + poly.radius * Math.sin(0));
         for (var i = 1; i <= poly.sides; i += 1) {

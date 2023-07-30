@@ -1,3 +1,4 @@
+import { toRadians } from "./utils.js";
 const CONFIG = {
     canvasWidth: 1000,
     canvasHeight: 1000,
@@ -40,7 +41,8 @@ export class Renderer {
             this.visibleCanvas.ctx.textBaseline = 'middle';
             this.visibleCanvas.ctx.fillText("Press FIRE to Start", (CONFIG.canvasWidth / 2), (CONFIG.canvasHeight * 0.75));
         };
-        this.paintPolygon = (poly, x, y) => {
+        this.paintPolygon = (poly, x, y, rotation_d) => {
+            let rotation_r = toRadians(rotation_d);
             this.visibleCanvas.ctx.beginPath();
             this.visibleCanvas.ctx.moveTo(x + poly.radius * Math.cos(0), y + poly.radius * Math.sin(0));
             for (var i = 1; i <= poly.sides; i += 1) {
