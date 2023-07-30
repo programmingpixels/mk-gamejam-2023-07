@@ -1,4 +1,5 @@
 import { InputState } from "./inputs.js"
+import { Polygon } from "./polygon.js"
 
 export interface Velocity {
     x: number
@@ -11,6 +12,8 @@ export class Body {
     color: number  // 0-100
     velocity: Velocity
     mass: number
+    rotation: number
+    // polygon: Polygon
 
     constructor(x: number, y: number, color: number, velocity: Velocity, mass: number) {
         this.x = x
@@ -18,6 +21,8 @@ export class Body {
         this.color = color
         this.velocity = velocity
         this.mass = mass
+        this.rotation = 0
+        // this.polygon = new Polygon()
     }
 }
 
@@ -39,13 +44,15 @@ export interface Enemy extends Body {
 export class Player extends Body {
     health: number
 
-    constructor(health: number) {
+    constructor(health: number = 5) {
         super(0, 0, 50, { x: 0, y: 0 }, 0)
         this.health = 5
     }
 
     update = (timeDelta: number, inputState: InputState) => {
-        //TODO: implement
+        // if inputState.up {
+        //     this.x
+        // }
     }
 }
 

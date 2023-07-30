@@ -40,7 +40,7 @@ export class Renderer {
             this.visibleCanvas.ctx.textBaseline = 'middle';
             this.visibleCanvas.ctx.fillText("Press FIRE to Start", (CONFIG.canvasWidth / 2), (CONFIG.canvasHeight * 0.75));
         };
-        this.paintPolygon = (poly) => {
+        this.paintPolygon = (poly, x, y) => {
             this.visibleCanvas.ctx.beginPath();
             this.visibleCanvas.ctx.moveTo(poly.x + poly.radius * Math.cos(0), poly.y + poly.radius * Math.sin(0));
             for (var i = 1; i <= poly.sides; i += 1) {
@@ -49,9 +49,11 @@ export class Renderer {
             if (poly.isFilled) {
                 this.visibleCanvas.ctx.fillStyle;
             }
-            this.visibleCanvas.ctx.strokeStyle = poly.outlineColor;
-            this.visibleCanvas.ctx.lineWidth = 1;
-            this.visibleCanvas.ctx.stroke();
+            if (poly.isOutlined) {
+                this.visibleCanvas.ctx.strokeStyle = poly.outlineColor;
+                this.visibleCanvas.ctx.lineWidth = 1;
+                this.visibleCanvas.ctx.stroke();
+            }
         };
         //make an off screen canvas to hold all the sprites
         this.invisibleCanvas = document.createElement("canvas");

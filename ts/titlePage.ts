@@ -8,7 +8,7 @@ export class TitlePage {
 
     constructor(canvasWidth: number, canvasHeight: number, numOfStars: number = 100) {
         this.stars = []
-        this.polygon = new Polygon(500, 500, 8, 50, "#FFFFFF", "#0000FF", 0, false, true, true, false)
+        this.polygon = new Polygon(5, 50, "#000022", "#888888", false, true, true, false)
         for (let i = 0; i < numOfStars; i++) {
             this.stars.push(new Star(canvasWidth, canvasHeight))
         }

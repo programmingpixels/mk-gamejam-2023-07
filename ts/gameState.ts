@@ -28,6 +28,7 @@ export class GameState {
         const timeDelta = performance.now() - this.lastUpdated
         this.lastUpdated = updateTime
 
+        // update the player location, direction, velocity
         this.players.forEach(player => { player.update(timeDelta, inputStates[0]) })
 
         console.log("updating game state")

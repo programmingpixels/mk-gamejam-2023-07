@@ -1,17 +1,22 @@
 export class Body {
+    // polygon: Polygon
     constructor(x, y, color, velocity, mass) {
         this.x = x;
         this.y = y;
         this.color = color;
         this.velocity = velocity;
         this.mass = mass;
+        this.rotation = 0;
+        // this.polygon = new Polygon()
     }
 }
 export class Player extends Body {
-    constructor(health) {
+    constructor(health = 5) {
         super(0, 0, 50, { x: 0, y: 0 }, 0);
         this.update = (timeDelta, inputState) => {
-            //TODO: implement
+            // if inputState.up {
+            //     this.x
+            // }
         };
         this.health = 5;
     }

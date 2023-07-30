@@ -69,18 +69,22 @@ export class Renderer {
         this.visibleCanvas.ctx.fillText("Press FIRE to Start", (CONFIG.canvasWidth / 2), (CONFIG.canvasHeight * 0.75))
     }
 
-    paintPolygon = (poly: Polygon) => {
+    paintPolygon = (poly: Polygon, x: number, y: number) => {
         this.visibleCanvas.ctx.beginPath();
-        this.visibleCanvas.ctx.moveTo(poly.x + poly.radius * Math.cos(0), poly.y + poly.radius * Math.sin(0));
+        this.visibleCanvas.ctx.moveTo(x + poly.radius * Math.cos(0), y + poly.radius * Math.sin(0));
         for (var i = 1; i <= poly.sides; i += 1) {
-            this.visibleCanvas.ctx.lineTo(poly.x + poly.radius * Math.cos(i * 2 * Math.PI / poly.sides), poly.y + poly.radius * Math.sin(i * 2 * Math.PI / poly.sides));
+            this.visibleCanvas.ctx.lineTo(x + poly.radius * Math.cos(i * 2 * Math.PI / poly.sides), y + poly.radius * Math.sin(i * 2 * Math.PI / poly.sides));
         }
         if (poly.isFilled) {
-            this.visibleCanvas.ctx.fillStyle
+            this.visibleCanvas.ctx.fillStyle = poly.fillColor
+            this.visibleCanvas.ctx.fill()
         }
-        this.visibleCanvas.ctx.strokeStyle = poly.outlineColor;
-        this.visibleCanvas.ctx.lineWidth = 1;
-        this.visibleCanvas.ctx.stroke();
+        if (poly.isOutlined) {
+            this.visibleCanvas.ctx.strokeStyle = poly.outlineColor;
+            this.visibleCanvas.ctx.lineWidth = 1;
+            this.visibleCanvas.ctx.stroke();
+        }
+
     }
 
 
