@@ -27,7 +27,7 @@ export class Body {
 }
 export class Obstacle extends Body {
     constructor() {
-        super(Math.random() * CONFIG.canvasWidth, Math.random() * (CONFIG.canvasHeight - 100), randomIntegerInclusive(1, 100), { x: 0, y: 0 }, 0);
+        super((Math.random() * CONFIG.canvasWidth) + CONFIG.canvasWidth, (Math.random() * (CONFIG.canvasHeight - 100) + CONFIG.canvasHeight), randomIntegerInclusive(1, 100), { x: 0, y: 0 }, 0);
         const polygon = new Polygon(0, 25, this.getHexColor(), this.getHexColor(), true, true, true, false);
         this.polygon = polygon;
     }
@@ -63,7 +63,7 @@ export class Player extends Body {
             this.y += this.velocity.y * timeDelta;
         };
         this.health = health;
-        const polygon = new Polygon(3, 10, this.getHexColor(), this.getHexColor(), true, true, true, true);
+        const polygon = new Polygon(3, 20, this.getHexColor(), this.getHexColor(), true, true, true, true);
         this.polygon = polygon;
     }
 }
