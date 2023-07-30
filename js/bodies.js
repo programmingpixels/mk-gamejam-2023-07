@@ -1,8 +1,14 @@
 import { Polygon } from "./polygon.js";
-import { toRadians } from "./utils.js";
+import { rgbToHex, toRadians } from "./utils.js";
 import { randomIntegerInclusive } from "./utils.js";
 export class Body {
     constructor(x, y, color, velocity, mass, polygon) {
+        this.getHexColor = () => {
+            let r = 255 * (this.color / 100);
+            let g = 0;
+            let b = 255 * (1 - (this.color / 100));
+            return rgbToHex(r, g, b);
+        };
         this.applyForce = (direction_d, magnitude, timeDelta) => {
             const f_x = magnitude * Math.sin(toRadians(direction_d));
             const f_y = magnitude * Math.cos(toRadians(direction_d));
