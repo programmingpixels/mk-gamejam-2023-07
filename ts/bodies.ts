@@ -58,7 +58,7 @@ export class Enemy extends Body {
 
     constructor() {
         let health = randomIntegerInclusive(3, 8)
-        super(Math.random()*CONFIG.canvasWidth, Math.random()*(CONFIG.canvasHeight-100), randomIntegerInclusive(1, 100), { x: 0, y: 0 }, 0)
+        super(Math.random() * CONFIG.canvasWidth, Math.random() * (CONFIG.canvasHeight - 100), randomIntegerInclusive(1, 100), { x: 0, y: 0 }, 0)
         const polygon = new Polygon(health, 20, this.getHexColor(), this.getHexColor(), true, true, true, false)
 
         this.health = health
@@ -69,8 +69,8 @@ export class Enemy extends Body {
 export class Player extends Body {
     health: number
 
-    constructor(health: number = 5) {
-        super((CONFIG.canvasWidth/2), (CONFIG.canvasHeight/2), 50, { x: 0, y: 0 }, 100)
+    constructor(startColor: number, startX: number, startY: number, health: number = 1) {
+        super(startX, startY, startColor, { x: 0, y: 0 }, 100)
         this.health = health
         const polygon = new Polygon(3, 20, this.getHexColor(), this.getHexColor(), true, true, true, true)
         this.polygon = polygon

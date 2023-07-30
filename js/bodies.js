@@ -42,8 +42,8 @@ export class Enemy extends Body {
     }
 }
 export class Player extends Body {
-    constructor(health = 5) {
-        super((CONFIG.canvasWidth / 2), (CONFIG.canvasHeight / 2), 50, { x: 0, y: 0 }, 100);
+    constructor(startColor, startX, startY, health = 1) {
+        super(startX, startY, startColor, { x: 0, y: 0 }, 100);
         this.update = (timeDelta, inputState) => {
             // rotate
             if (inputState.left) {

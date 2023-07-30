@@ -9,20 +9,29 @@ export class GameState {
     ballistics: Ballistic[]
     lastUpdated: number
 
-    constructor(playerNum: number = 1) {
+    constructor(playerNum: number = 3) {
         this.obstacles = [];
         this.enemies = [];
         this.players = [];
         this.ballistics = [];
 
-        for (let i = 0; i < playerNum; i++) {
-            this.addPlayer()
+        if (playerNum == 1) {
+            this.addPlayer(50, 500, 550)
+        }
+        else if (playerNum == 2) {
+            this.addPlayer(33, 300, 550)
+            this.addPlayer(66, 700, 550)
+        }
+        else if (playerNum == 3) {
+            this.addPlayer(25, 300, 550)
+            this.addPlayer(75, 700, 550)
+            this.addPlayer(50, 500, 250)
         }
 
-        // create some enemies
-        for (let i = 0; i < 1; i++) {
-            this.addEnemy()
-        }
+        // // create some enemies
+        // for (let i = 0; i < 1; i++) {
+        //     this.addEnemy()
+        // }
 
         // create some obstacles
         for (let i = 0; i < 1; i++) {
@@ -47,8 +56,8 @@ export class GameState {
         console.log("updating game state")
     }
 
-    addPlayer = () => {
-        const player = new Player()
+    addPlayer = (startColor: number, startX: number, startY: number) => {
+        const player = new Player(startColor, startX, startY)
         this.players.push(player)
     }
 
