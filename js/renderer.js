@@ -42,20 +42,35 @@ export class Renderer {
             this.visibleCanvas.ctx.fillText("Press FIRE to Start", (CONFIG.canvasWidth / 2), (CONFIG.canvasHeight * 0.75));
         };
         this.paintPolygon = (poly, x, y, rotation_d) => {
-            let rotation_r = toRadians(rotation_d) - toRadians(90);
-            this.visibleCanvas.ctx.beginPath();
-            this.visibleCanvas.ctx.moveTo(x + poly.radius * Math.cos(rotation_r), y + poly.radius * Math.sin(rotation_r));
-            for (var i = 1; i <= poly.sides; i += 1) {
-                this.visibleCanvas.ctx.lineTo(x + poly.radius * Math.cos(rotation_r + (i * 2 * Math.PI / poly.sides)), y + poly.radius * Math.sin(rotation_r + (i * 2 * Math.PI / poly.sides)));
+            if (poly.sides = 0) {
+                this.visibleCanvas.ctx.beginPath();
+                this.visibleCanvas.ctx.arc(x, y, poly.radius, 0, 2 * Math.PI, false);
+                if (poly.isFilled) {
+                    this.visibleCanvas.ctx.fillStyle = poly.fillColor;
+                    this.visibleCanvas.ctx.fill();
+                }
+                if (poly.isOutlined) {
+                    this.visibleCanvas.ctx.lineWidth = 1;
+                    this.visibleCanvas.ctx.strokeStyle = poly.outlineColor;
+                    this.visibleCanvas.ctx.stroke();
+                }
             }
-            if (poly.isFilled) {
-                this.visibleCanvas.ctx.fillStyle = poly.fillColor;
-                this.visibleCanvas.ctx.fill();
-            }
-            if (poly.isOutlined) {
-                this.visibleCanvas.ctx.strokeStyle = poly.outlineColor;
-                this.visibleCanvas.ctx.lineWidth = 1;
-                this.visibleCanvas.ctx.stroke();
+            else {
+                let rotation_r = toRadians(rotation_d) - toRadians(90);
+                this.visibleCanvas.ctx.beginPath();
+                this.visibleCanvas.ctx.moveTo(x + poly.radius * Math.cos(rotation_r), y + poly.radius * Math.sin(rotation_r));
+                for (var i = 1; i <= poly.sides; i += 1) {
+                    this.visibleCanvas.ctx.lineTo(x + poly.radius * Math.cos(rotation_r + (i * 2 * Math.PI / poly.sides)), y + poly.radius * Math.sin(rotation_r + (i * 2 * Math.PI / poly.sides)));
+                }
+                if (poly.isFilled) {
+                    this.visibleCanvas.ctx.fillStyle = poly.fillColor;
+                    this.visibleCanvas.ctx.fill();
+                }
+                if (poly.isOutlined) {
+                    this.visibleCanvas.ctx.strokeStyle = poly.outlineColor;
+                    this.visibleCanvas.ctx.lineWidth = 1;
+                    this.visibleCanvas.ctx.stroke();
+                }
             }
         };
         //make an off screen canvas to hold all the sprites
