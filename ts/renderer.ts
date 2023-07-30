@@ -71,7 +71,7 @@ export class Renderer {
     }
 
     paintPolygon = (poly: Polygon, x: number, y: number, rotation_d: number) => {
-        if ( poly.sides = 0 ) {
+        if ( poly.sides == 0 ) {
             this.visibleCanvas.ctx.beginPath();
             this.visibleCanvas.ctx.arc(x, y, poly.radius, 0, 2 * Math.PI, false);
             if ( poly.isFilled ) {

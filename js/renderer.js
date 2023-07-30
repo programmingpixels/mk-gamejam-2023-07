@@ -42,7 +42,7 @@ export class Renderer {
             this.visibleCanvas.ctx.fillText("Press FIRE to Start", (CONFIG.canvasWidth / 2), (CONFIG.canvasHeight * 0.75));
         };
         this.paintPolygon = (poly, x, y, rotation_d) => {
-            if (poly.sides = 0) {
+            if (poly.sides == 0) {
                 this.visibleCanvas.ctx.beginPath();
                 this.visibleCanvas.ctx.arc(x, y, poly.radius, 0, 2 * Math.PI, false);
                 if (poly.isFilled) {
