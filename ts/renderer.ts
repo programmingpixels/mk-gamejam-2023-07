@@ -3,8 +3,8 @@ import { Polygon } from "./polygon.js";
 import { toRadians } from "./utils.js";
 
 const CONFIG = {
-    canvasWidth: 800,
-    canvasHeight: 800,
+    canvasWidth: 1000,
+    canvasHeight: 600,
     bgColor: "#000000",
     mainTitle: "- BASTEROIDS 4 - TOUCHING THE GNOME -",
 };
