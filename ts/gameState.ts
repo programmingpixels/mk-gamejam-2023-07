@@ -36,11 +36,6 @@ export class GameState {
         //     this.addEnemy()
         // }
 
-        // create some obstacles
-        for (let i = 0; i < 15; i++) {
-            this.addObstacle()
-        }
-
         // do this last
         this.gameStartTime = performance.now()
         this.lastUpdated = this.gameStartTime
@@ -56,14 +51,17 @@ export class GameState {
         this.players.forEach(player => { player.update(timeDelta, inputStates[0]) })
 
         // update each obstacble location
-        this.obstacles.forEach(obstacle => { obstacle.update(timeDelta)})
+        this.obstacles.forEach(obstacle => { obstacle.update(timeDelta) })
 
         // add ballistics
         // TODO: add ballistics
-        // cycle obstacles every 3 seconds
-        if ((updateTime - this.lastObstacleCreated) > 3000) {
-            this.removeOldestObstacle()
+        // add obstacles every 2 seconds
+        if ((updateTime - this.lastObstacleCreated) > 1000) {
             this.addObstacle()
+            if (this.obstacles.length > 25) {
+                this.removeOldestObstacle()
+            }
+            this.lastObstacleCreated = updateTime
         }
 
         this.score = Math.floor((updateTime - this.gameStartTime) / 1000)
@@ -77,7 +75,7 @@ export class GameState {
                 var y = player.y - player.y;
                 var distance = Math.sqrt(x * x + y * y);
                 if (distance < player.polygon.radius + obstacle.polygon.radius) {
-                    isGameOver = true
+                    // isGameOver = true
                 }
             })
         })
@@ -108,6 +106,7 @@ export class GameState {
     removeOldestObstacle = () => {
         // remove the oldest obstacle
         this.obstacles.shift()
+        console.log(this.obstacles)
     }
 }
 

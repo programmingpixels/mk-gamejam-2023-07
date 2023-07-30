@@ -47,11 +47,10 @@ export class Body {
 
 export class Obstacle extends Body {
     constructor() {
-        let x_sign = (Math.random() < 0.5) ? -1 : 1; 
-        let y_sign = (Math.random() < 0.5) ? -1 : 1;  
-        let vel = (Math.random()*0.5)+0.1
-        console.log (x_sign, y_sign)     
-        super((Math.random()*CONFIG.canvasWidth)+(x_sign*CONFIG.canvasWidth), (Math.random()*(CONFIG.canvasHeight)+(y_sign*CONFIG.canvasHeight)), randomIntegerInclusive(1, 100), { x: x_sign*vel*-1, y: y_sign*vel*-1 }, 0)
+        let x_sign = (Math.random() < 0.5) ? -1 : 1;
+        let y_sign = (Math.random() < 0.5) ? -1 : 1;
+        let vel = (Math.random() * 0.1) + 0.01
+        super((Math.random() * CONFIG.canvasWidth) + (x_sign * CONFIG.canvasWidth), (Math.random() * (CONFIG.canvasHeight) + (y_sign * CONFIG.canvasHeight)), randomIntegerInclusive(1, 100), { x: x_sign * vel * -1, y: y_sign * vel * -1 }, 0)
         const polygon = new Polygon(0, 25, this.getHexColor(), this.getHexColor(), true, true, true, false)
         this.polygon = polygon
     }
@@ -89,16 +88,16 @@ export class Player extends Body {
     update = (timeDelta: number, inputState: InputState) => {
         // rotate
         if (inputState.left) {
-            this.rotation -= 2
+            this.rotation -= 3
         }
         if (inputState.right) {
-            this.rotation += 2
+            this.rotation += 3
         }
         if (inputState.up) {
-            this.applyForce(this.rotation, 0.005, timeDelta)
+            this.applyForce(this.rotation, 0.03, timeDelta)
         }
         if (inputState.down) {
-            this.applyForce(this.rotation, -0.005, timeDelta)
+            this.applyForce(this.rotation, -0.03, timeDelta)
         }
 
         // update position
