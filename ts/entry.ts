@@ -6,7 +6,7 @@ const appState = new ApplicationState()
 
 export const main = () => {
     const inputStates = getInputStates()
-    appState.update(unputStates)
+    appState.update(inputStates)
     appState.paint()
     window.requestAnimationFrame(main)
 }
