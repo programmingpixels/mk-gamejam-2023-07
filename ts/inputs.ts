@@ -2,8 +2,8 @@ export interface ControllerLayout {
     up: string
     left: string
     right: string
-    firePostive: string
-    fireNegative: string
+    fireRed: string
+    fireBlue: string
 
 
 }
