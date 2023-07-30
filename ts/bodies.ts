@@ -68,8 +68,8 @@ export class Enemy extends Body {
 export class Player extends Body {
     health: number
 
-    constructor(health: number = 5) {
-        super(50, 50, 50, { x: 0, y: 0 }, 100)
+    constructor(startColor: number, startX: number, startY: number, health: number = 1) {
+        super(startX, startY, startColor, { x: 0, y: 0 }, 100)
         this.health = health
         const polygon = new Polygon(3, 10, this.getHexColor(), this.getHexColor(), true, true, true, true)
         this.polygon = polygon

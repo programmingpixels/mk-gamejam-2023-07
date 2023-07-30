@@ -1,6 +1,6 @@
 import { Player, Enemy, Obstacle } from "./bodies.js";
 export class GameState {
-    constructor(playerNum = 1) {
+    constructor(playerNum = 3) {
         this.update = (inputStates) => {
             const updateTime = performance.now();
             const timeDelta = performance.now() - this.lastUpdated;
@@ -11,8 +11,8 @@ export class GameState {
             // TODO: add ballistics
             console.log("updating game state");
         };
-        this.addPlayer = () => {
-            const player = new Player();
+        this.addPlayer = (startColor, startX, startY) => {
+            const player = new Player(startColor, startX, startY);
             this.players.push(player);
         };
         this.addEnemy = () => {
@@ -27,13 +27,22 @@ export class GameState {
         this.enemies = [];
         this.players = [];
         this.ballistics = [];
-        for (let i = 0; i < playerNum; i++) {
-            this.addPlayer();
+        if (playerNum == 1) {
+            this.addPlayer(50, 500, 550);
         }
-        // create some enemies
-        for (let i = 0; i < 1; i++) {
-            this.addEnemy();
+        else if (playerNum == 2) {
+            this.addPlayer(33, 300, 550);
+            this.addPlayer(66, 700, 550);
         }
+        else if (playerNum == 3) {
+            this.addPlayer(25, 300, 550);
+            this.addPlayer(75, 700, 550);
+            this.addPlayer(50, 500, 250);
+        }
+        // // create some enemies
+        // for (let i = 0; i < 1; i++) {
+        //     this.addEnemy()
+        // }
         // create some obstacles
         for (let i = 0; i < 1; i++) {
             this.addObstacle();
