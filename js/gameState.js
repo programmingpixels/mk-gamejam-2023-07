@@ -1,4 +1,5 @@
 import { Player, Enemy, Obstacle } from "./bodies.js";
+import { CONFIG } from "./CONFIG.js";
 export class GameState {
     constructor(playerNum = 3) {
         this.score = 0;
@@ -26,11 +27,22 @@ export class GameState {
             this.players.forEach(player => {
                 // for each obstacle
                 this.obstacles.forEach(obstacle => {
-                    var x = player.x - obstacle.x;
-                    var y = player.y - player.y;
-                    var distance = Math.sqrt(x * x + y * y);
-                    if (distance < player.polygon.radius + obstacle.polygon.radius) {
-                        // isGameOver = true
+                    if (obstacle.x < 0 || obstacle.x > CONFIG.canvasWidth || obstacle.y < 0 || obstacle.y > CONFIG.canvasHeight) {
+                    }
+                    else {
+                        var x = player.x - obstacle.x;
+                        var y = player.y - obstacle.y;
+                        var distance = Math.sqrt((x * x) + (y * y));
+                        if (distance < player.polygon.radius + obstacle.polygon.radius) {
+                            console.log(distance);
+                            console.log(player.x);
+                            console.log(player.y);
+                            console.log(player.polygon.radius);
+                            console.log(obstacle.x);
+                            console.log(obstacle.y);
+                            console.log(obstacle.polygon.radius);
+                            isGameOver = true;
+                        }
                     }
                 });
             });
