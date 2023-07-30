@@ -19,6 +19,16 @@ export class GameState {
             this.addPlayer()
         }
 
+        // create some enemies
+        for (let i = 0; i < 1; i++) {
+            this.addEnemy()
+        }
+
+        // create some obstacles
+        for (let i = 0; i < 1; i++) {
+            this.addObstacle()
+        }
+
         // do this last
         this.lastUpdated = performance.now()
     }
@@ -31,6 +41,9 @@ export class GameState {
         // update the player location, direction, velocity
         this.players.forEach(player => { player.update(timeDelta, inputStates[0]) })
 
+        // add ballistics
+        // TODO: add ballistics
+
         console.log("updating game state")
     }
 
@@ -39,5 +52,14 @@ export class GameState {
         this.players.push(player)
     }
 
+    addEnemy = () => {
+        const enemy = new Enemy()
+        this.enemies.push(enemy)
+    }
+
+    addObstacle = () => {
+        const obstacle = new Obstacle()
+        this.obstacles.push(obstacle)
+    }
 }
 

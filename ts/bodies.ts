@@ -1,6 +1,7 @@
 import { InputState } from "./inputs.js"
 import { Polygon } from "./polygon.js"
 import { toDegrees } from "./utils.js"
+import { randomIntegerInclusive } from "./utils.js"
 
 export interface Velocity {
     x: number
@@ -37,12 +38,24 @@ export class Body {
 
 
 
-export interface Obstacle extends Body {
+export class Obstacle extends Body {
+    constructor() {
+        const polygon = new Polygon(0, 50, "#0000FF", "#000000", true, true, true, true)
 
+        super(100, 100, 50, { x: 0, y: 0 }, 0, polygon)
+    }
 }
 
-export interface Enemy extends Body {
+export class Enemy extends Body {
     health: number  // represents the number of sides it has
+
+    constructor() {
+        let health = randomIntegerInclusive(3, 8)
+        const polygon = new Polygon(health, 20, "#00FF00", "#000000", true, true, true, true)
+        super(200, 200, 50, { x: 0, y: 0 }, 0, polygon)
+
+        this.health = health
+    }
 }
 
 export class Player extends Body {
@@ -51,8 +64,8 @@ export class Player extends Body {
     constructor(health: number = 5) {
         const polygon = new Polygon(3, 10, "#FF0000", "#000000", true, true, true, true)
 
-        super(0, 0, 50, { x: 0, y: 0 }, 0, polygon)
-        this.health = 5
+        super(50, 50, 50, { x: 0, y: 0 }, 0, polygon)
+        this.health = health
     }
 
     update = (timeDelta: number, inputState: InputState) => {

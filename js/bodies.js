@@ -1,5 +1,6 @@
 import { Polygon } from "./polygon.js";
 import { toDegrees } from "./utils.js";
+import { randomIntegerInclusive } from "./utils.js";
 export class Body {
     constructor(x, y, color, velocity, mass, polygon) {
         this.applyForce = (direction, magnitude, timeDelta) => {
@@ -17,10 +18,24 @@ export class Body {
         this.polygon = polygon;
     }
 }
+export class Obstacle extends Body {
+    constructor() {
+        const polygon = new Polygon(0, 50, "#0000FF", "#000000", true, true, true, true);
+        super(100, 100, 50, { x: 0, y: 0 }, 0, polygon);
+    }
+}
+export class Enemy extends Body {
+    constructor() {
+        let health = randomIntegerInclusive(3, 8);
+        const polygon = new Polygon(health, 20, "#00FF00", "#000000", true, true, true, true);
+        super(200, 200, 50, { x: 0, y: 0 }, 0, polygon);
+        this.health = health;
+    }
+}
 export class Player extends Body {
     constructor(health = 5) {
         const polygon = new Polygon(3, 10, "#FF0000", "#000000", true, true, true, true);
-        super(0, 0, 50, { x: 0, y: 0 }, 0, polygon);
+        super(50, 50, 50, { x: 0, y: 0 }, 0, polygon);
         this.update = (timeDelta, inputState) => {
             // rotate
             if (inputState.left) {
@@ -39,7 +54,7 @@ export class Player extends Body {
             this.x = this.x + this.velocity.x * timeDelta;
             this.y = this.y + this.velocity.y * timeDelta;
         };
-        this.health = 5;
+        this.health = health;
     }
 }
 export var RedBlue;
