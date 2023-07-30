@@ -47,9 +47,19 @@ export class Body {
 
 export class Obstacle extends Body {
     constructor() {
-        super((Math.random()*CONFIG.canvasWidth)+CONFIG.canvasWidth, (Math.random()*(CONFIG.canvasHeight-100)+CONFIG.canvasHeight), randomIntegerInclusive(1, 100), { x: 0, y: 0 }, 0)
+        let x_sign = (Math.random() < 0.5) ? -1 : 1; 
+        let y_sign = (Math.random() < 0.5) ? -1 : 1;  
+        let vel = (Math.random()*0.5)+0.1
+        console.log (x_sign, y_sign)     
+        super((Math.random()*CONFIG.canvasWidth)+(x_sign*CONFIG.canvasWidth), (Math.random()*(CONFIG.canvasHeight)+(y_sign*CONFIG.canvasHeight)), randomIntegerInclusive(1, 100), { x: x_sign*vel*-1, y: y_sign*vel*-1 }, 0)
         const polygon = new Polygon(0, 25, this.getHexColor(), this.getHexColor(), true, true, true, false)
         this.polygon = polygon
+    }
+
+    update = (timeDelta: number) => {
+        // update position
+        this.x += this.velocity.x * timeDelta
+        this.y += this.velocity.y * timeDelta
     }
 }
 
@@ -72,7 +82,7 @@ export class Player extends Body {
     constructor(startColor: number, startX: number, startY: number, health: number = 1) {
         super(startX, startY, startColor, { x: 0, y: 0 }, 100)
         this.health = health
-        const polygon = new Polygon(3, 20, this.getHexColor(), this.getHexColor(), true, true, true, true)
+        const polygon = new Polygon(3, 10, this.getHexColor(), this.getHexColor(), true, true, true, true)
         this.polygon = polygon
     }
 

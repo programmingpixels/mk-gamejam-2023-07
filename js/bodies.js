@@ -27,7 +27,16 @@ export class Body {
 }
 export class Obstacle extends Body {
     constructor() {
-        super((Math.random() * CONFIG.canvasWidth) + CONFIG.canvasWidth, (Math.random() * (CONFIG.canvasHeight - 100) + CONFIG.canvasHeight), randomIntegerInclusive(1, 100), { x: 0, y: 0 }, 0);
+        let x_sign = (Math.random() < 0.5) ? -1 : 1;
+        let y_sign = (Math.random() < 0.5) ? -1 : 1;
+        let vel = (Math.random() * 0.5) + 0.1;
+        console.log(x_sign, y_sign);
+        super((Math.random() * CONFIG.canvasWidth) + (x_sign * CONFIG.canvasWidth), (Math.random() * (CONFIG.canvasHeight) + (y_sign * CONFIG.canvasHeight)), randomIntegerInclusive(1, 100), { x: x_sign * vel * -1, y: y_sign * vel * -1 }, 0);
+        this.update = (timeDelta) => {
+            // update position
+            this.x += this.velocity.x * timeDelta;
+            this.y += this.velocity.y * timeDelta;
+        };
         const polygon = new Polygon(0, 25, this.getHexColor(), this.getHexColor(), true, true, true, false);
         this.polygon = polygon;
     }
@@ -63,7 +72,7 @@ export class Player extends Body {
             this.y += this.velocity.y * timeDelta;
         };
         this.health = health;
-        const polygon = new Polygon(3, 20, this.getHexColor(), this.getHexColor(), true, true, true, true);
+        const polygon = new Polygon(3, 10, this.getHexColor(), this.getHexColor(), true, true, true, true);
         this.polygon = polygon;
     }
 }
