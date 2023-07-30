@@ -65,6 +65,18 @@ export class GameState {
 
         // check for game over
         let isGameOver = false
+        this.players.forEach(player => {
+            // for each obstacle
+            this.obstacles.forEach(obstacle => {
+                var x = player.x - obstacle.x;
+                var y = player.y - player.y;
+                var distance = Math.sqrt(x * x + y * y);
+                if (distance < player.polygon.radius + obstacle.polygon.radius) {
+                    isGameOver = true
+                }
+            })
+        })
+
         if (isGameOver) {
             console.log("end game")
             return false
