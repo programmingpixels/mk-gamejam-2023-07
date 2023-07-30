@@ -1,6 +1,6 @@
 import { Star } from "./star.js";
 export class TitlePage {
-    constructor(canvasWidth, canvasHeight, numOfStars = 20) {
+    constructor(canvasWidth, canvasHeight, numOfStars = 100) {
         this.update = (inputs) => {
             //TODO: implement options for however many players
             if (inputs.includes("keyboard_space")) {

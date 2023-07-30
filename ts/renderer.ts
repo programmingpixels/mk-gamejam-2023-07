@@ -2,8 +2,9 @@ import { Star } from "./star.js";
 
 const CONFIG = {
     canvasWidth: 1000,
-    canvasHeight: 800,
-    bgColor: "#000000"
+    canvasHeight: 1000,
+    bgColor: "#000000",
+    mainTitle: "- BASTEROIDS 4 - TOUCHING THE GNOME -",
 };
 
 
@@ -49,5 +50,21 @@ export class Renderer {
             this.visibleCanvas.ctx.fillStyle = star.getColorHex()
             this.visibleCanvas.ctx.fillRect(star.x, star.y, 1, 1)
         })
+    }
+
+    paintTitle = (font: string, color: string) => {
+        this.visibleCanvas.ctx.fillStyle = color
+        this.visibleCanvas.ctx.font = font
+        this.visibleCanvas.ctx.textAlign = 'center'
+        this.visibleCanvas.ctx.textBaseline = 'middle'
+        this.visibleCanvas.ctx.fillText(CONFIG.mainTitle, (CONFIG.canvasWidth/2), (CONFIG.canvasHeight/4))
+    }
+
+    paintPressSpacebar = (font: string, color: string) => {
+        this.visibleCanvas.ctx.fillStyle = color
+        this.visibleCanvas.ctx.font = font
+        this.visibleCanvas.ctx.textAlign = 'center'
+        this.visibleCanvas.ctx.textBaseline = 'middle'
+        this.visibleCanvas.ctx.fillText("Press SPACEBAR to Start", (CONFIG.canvasWidth/2), (CONFIG.canvasHeight*0.75))
     }
 }

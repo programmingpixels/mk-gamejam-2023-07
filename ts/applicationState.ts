@@ -48,6 +48,8 @@ export class ApplicationState {
         if (this.titlePage?.stars) {
             this.renderer.paintStars(this.titlePage.stars)
         }
+        this.renderer.paintTitle( "bold 36px Courier", "#11FF11" )
+        this.renderer.paintPressSpacebar( "bold 28px Courier", this.titlePage.stars[0].getColorHex() )
     }
     paintGameState = () => {
         throw new Error("Method not implemented.");
