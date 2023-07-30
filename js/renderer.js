@@ -9,7 +9,7 @@ class BrushableHtmlCanvasElement extends HTMLCanvasElement {
         this.ctx = this.getContext("2d");
     }
 }
-export class Screen {
+export class Renderer {
     constructor() {
         this.paintBackgroundColor = () => {
             this.visibleCanvas.ctx.fillStyle = CONFIG.bgColor;

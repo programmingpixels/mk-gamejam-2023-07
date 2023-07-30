@@ -1,6 +1,7 @@
+import { Player } from "./bodies.js";
 export class GameState {
-    constructor() {
-        this.update = () => {
+    constructor(playerNum = 1) {
+        this.update = (inputs) => {
             const updateTime = performance.now();
             const timeDelta = performance.now() - this.lastUpdated;
             this.lastUpdated = updateTime;
@@ -8,18 +9,18 @@ export class GameState {
             console.log("updating game state");
             //TODO: implement
         };
-        this.createPlayer = () => {
-            //TODO: implement
-            // const player = new Player(
-            //     health = 100,
-            //     controller_uuid = "" "TODO: implement",
-            // )
-            // this.players.push(player)
+        this.addPlayer = () => {
+            const player = new Player(100);
+            this.players.push(player);
         };
         this.obstacles = [];
         this.enemies = [];
         this.players = [];
         this.ballistics = [];
+        for (let i = 0; i < playerNum; i++) {
+            this.addPlayer();
+        }
+        // do this last
         this.lastUpdated = performance.now();
     }
 }

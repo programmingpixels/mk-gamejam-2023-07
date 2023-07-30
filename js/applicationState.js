@@ -1,5 +1,6 @@
 import { GameState } from "./gameState.js";
 import { TitlePage } from "./titlePage.js";
+import { Renderer } from "./renderer.js";
 export class ApplicationState {
     constructor() {
         this.update = () => {
@@ -16,7 +17,7 @@ export class ApplicationState {
             this.gameState = new GameState();
         };
         this.paint = () => {
-            this.screen.paintBackgroundColor();
+            this.renderer.paintBackgroundColor();
             if (this.titlePage) {
                 this.paintTitlePage();
             }
@@ -31,13 +32,13 @@ export class ApplicationState {
         this.paintTitlePage = () => {
             var _a;
             if ((_a = this.titlePage) === null || _a === void 0 ? void 0 : _a.stars) {
-                this.screen.paintStars(this.titlePage.stars);
+                this.renderer.paintStars(this.titlePage.stars);
             }
         };
         this.paintGameState = () => {
             throw new Error("Method not implemented.");
         };
-        this.screen = new Screen();
-        this.titlePage = new TitlePage(this.screen.visibleCanvas.width, this.screen.visibleCanvas.height);
+        this.renderer = new Renderer();
+        this.titlePage = new TitlePage(this.renderer.visibleCanvas.width, this.renderer.visibleCanvas.height);
     }
 }
