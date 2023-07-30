@@ -40,9 +40,19 @@ export class ApplicationState {
             this.renderer.paintPolygon(this.titlePage.polygon, 500, 500, 11);
         };
         this.paintGameState = () => {
-            var _a, _b, _c, _d;
+            var _a, _b, _c;
             // paint players
-            this.renderer.paintPolygon((_a = this.gameState) === null || _a === void 0 ? void 0 : _a.players[0].polygon, (_b = this.gameState) === null || _b === void 0 ? void 0 : _b.players[0].x, (_c = this.gameState) === null || _c === void 0 ? void 0 : _c.players[0].y, (_d = this.gameState) === null || _d === void 0 ? void 0 : _d.players[0].rotation);
+            (_a = this.gameState) === null || _a === void 0 ? void 0 : _a.players.forEach(player => {
+                this.renderer.paintPolygon(player.polygon, player.x, player.y, player.rotation);
+            });
+            // paint enemies
+            (_b = this.gameState) === null || _b === void 0 ? void 0 : _b.enemies.forEach(enemy => {
+                this.renderer.paintPolygon(enemy.polygon, enemy.x, enemy.y, enemy.rotation);
+            });
+            // paint obstacles
+            (_c = this.gameState) === null || _c === void 0 ? void 0 : _c.obstacles.forEach(obstacle => {
+                this.renderer.paintPolygon(obstacle.polygon, obstacle.x, obstacle.y, obstacle.rotation);
+            });
         };
         this.renderer = new Renderer();
         this.titlePage = new TitlePage(this.renderer.visibleCanvas.width, this.renderer.visibleCanvas.height);
