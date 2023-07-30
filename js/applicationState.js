@@ -36,6 +36,7 @@ export class ApplicationState {
             }
             this.renderer.paintTitle("bold 36px Courier", "#11FF11");
             this.renderer.paintPressSpacebar("bold 28px Courier", this.titlePage.stars[0].getColorHex());
+            this.renderer.paintPolygon(this.titlePage.polygon);
         };
         this.paintGameState = () => {
             throw new Error("Method not implemented.");

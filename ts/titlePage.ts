@@ -1,10 +1,13 @@
 import { Star } from "./star.js";
+import { Polygon } from "./polygon.js";
 
 export class TitlePage {
     stars: Star[]
+    polygon: Polygon
 
     constructor(canvasWidth: number, canvasHeight: number, numOfStars: number = 100) {
         this.stars = []
+        this.polygon = new Polygon(500, 500, 8, 50, "#FFFFFF", "#0000FF", 0, false, true, true, false)
         for (let i = 0; i < numOfStars; i++) {
             this.stars.push(new Star(canvasWidth, canvasHeight))
         }

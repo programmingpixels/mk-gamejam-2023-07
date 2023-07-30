@@ -27,6 +27,10 @@ export class Polygon {
         this.isOutlined = isOutlined
         this.isPlayer = isPlayer
         this.hitRadius = this.radius
+        if (this.isPlayer) {
+            this.sides = 3
+        }
+        
     }
 
 }
