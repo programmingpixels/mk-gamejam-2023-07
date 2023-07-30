@@ -1,14 +1,7 @@
 import { Star } from "./star.js";
 import { Polygon } from "./polygon.js";
 import { toRadians } from "./utils.js";
-
-const CONFIG = {
-    canvasWidth: 1000,
-    canvasHeight: 1000,
-    bgColor: "#000000",
-    mainTitle: "- BASTEROIDS 4 - TOUCHING THE GNOME -",
-};
-
+import { CONFIG } from "./CONFIG.js";
 
 class BrushableHtmlCanvasElement extends HTMLCanvasElement {
     ctx: CanvasRenderingContext2D

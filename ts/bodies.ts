@@ -42,7 +42,7 @@ export class Obstacle extends Body {
     constructor() {
         const polygon = new Polygon(0, 50, "#0000FF", "#000000", true, true, true, false)
 
-        super(100, 100, 50, { x: 0, y: 0 }, 0, polygon)
+        super(50, 50, 50, { x: 0, y: 0 }, 0, polygon)
     }
 }
 
@@ -52,7 +52,7 @@ export class Enemy extends Body {
     constructor() {
         let health = randomIntegerInclusive(3, 8)
         const polygon = new Polygon(health, 20, "#00FF00", "#000000", true, true, true, false)
-        super(200, 200, 50, { x: 0, y: 0 }, 0, polygon)
+        super(100, 100, 50, { x: 0, y: 0 }, 0, polygon)
 
         this.health = health
     }
