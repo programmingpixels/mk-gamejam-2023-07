@@ -15,23 +15,23 @@ export class Body {
     velocity: Velocity
     mass: number
     rotation: number
-    polygon: Polygon
+    polygon: Polygon | null
 
     getHexColor = () => {
-        let r = 255 * (this.color / 100)
+        let r = Math.floor(255 * (this.color / 100))
         let g = 0
-        let b = 255 * (1 - (this.color / 100))
+        let b = Math.floor(255 * (1 - (this.color / 100)))
         return rgbToHex(r, g, b)
     }
 
-    constructor(x: number, y: number, color: number, velocity: Velocity, mass: number, polygon: Polygon) {
+    constructor(x: number, y: number, color: number, velocity: Velocity, mass: number) {
         this.x = x
         this.y = y
         this.color = color
         this.velocity = velocity
         this.mass = mass
         this.rotation = 0
-        this.polygon = polygon
+        this.polygon = null
     }
 
     applyForce = (direction_d: number, magnitude: number, timeDelta: number) => {
@@ -44,12 +44,11 @@ export class Body {
 }
 
 
-
 export class Obstacle extends Body {
     constructor() {
-        const polygon = new Polygon(0, 50, "#0000FF", "#000000", true, true, true, false)
-
-        super(50, 50, 50, { x: 0, y: 0 }, 0, polygon)
+        super(50, 50, 50, { x: 0, y: 0 }, 0)
+        const polygon = new Polygon(0, 50, this.getHexColor(), this.getHexColor(), true, true, true, false)
+        this.polygon = polygon
     }
 }
 
@@ -58,10 +57,11 @@ export class Enemy extends Body {
 
     constructor() {
         let health = randomIntegerInclusive(3, 8)
-        const polygon = new Polygon(health, 20, "#00FF00", "#000000", true, true, true, false)
-        super(100, 100, 50, { x: 0, y: 0 }, 0, polygon)
+        super(100, 100, 50, { x: 0, y: 0 }, 0)
+        const polygon = new Polygon(health, 20, this.getHexColor(), this.getHexColor(), true, true, true, false)
 
         this.health = health
+        this.polygon = polygon
     }
 }
 
@@ -69,10 +69,10 @@ export class Player extends Body {
     health: number
 
     constructor(health: number = 5) {
-        const polygon = new Polygon(3, 10, "#FF0000", "#000000", true, true, true, true)
-
-        super(50, 50, 50, { x: 0, y: 0 }, 100, polygon)
+        super(50, 50, 50, { x: 0, y: 0 }, 100)
         this.health = health
+        const polygon = new Polygon(3, 10, this.getHexColor(), this.getHexColor(), true, true, true, true)
+        this.polygon = polygon
     }
 
     update = (timeDelta: number, inputState: InputState) => {
