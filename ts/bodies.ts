@@ -1,5 +1,6 @@
 import { InputState } from "./inputs.js"
 import { Polygon } from "./polygon.js"
+import { toDegrees } from "./utils.js"
 
 export interface Velocity {
     x: number
@@ -24,13 +25,16 @@ export class Body {
         this.rotation = 0
         // this.polygon = new Polygon()
     }
+
+    applyForce = (direction: number, magnitude: number, timeDelta: number) => {
+        const f_x = magnitude * Math.sin(toDegrees(direction))
+        const f_y = magnitude * Math.cos(toDegrees(direction))
+
+        this.velocity.x += timeDelta * f_x / this.mass
+        this.velocity.y += timeDelta * f_y / this.mass
+    }
 }
 
-// applyForce(force_x, force_y) {
-//     //TODO: implement
-//     // this.velocity_x += force_x;
-//     // this.velocity_y += force_y;
-// }
 
 
 export interface Obstacle extends Body {
@@ -50,9 +54,23 @@ export class Player extends Body {
     }
 
     update = (timeDelta: number, inputState: InputState) => {
-        // if inputState.up {
-        //     this.x
-        // }
+        // rotate
+        if (inputState.left) {
+            this.rotation -= 1
+        }
+        if (inputState.right) {
+            this.rotation += 1
+        }
+        if (inputState.up) {
+            this.applyForce(this.rotation, 5, timeDelta)
+        }
+        if (inputState.down) {
+            this.applyForce(this.rotation, -5, timeDelta)
+        }
+
+        // update position
+        this.x = this.x + this.velocity.x * timeDelta
+        this.y = this.y + this.velocity.y * timeDelta
     }
 }
 
