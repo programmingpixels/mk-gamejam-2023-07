@@ -42,12 +42,13 @@ export class Renderer {
         };
         this.paintPolygon = (poly, x, y) => {
             this.visibleCanvas.ctx.beginPath();
-            this.visibleCanvas.ctx.moveTo(poly.x + poly.radius * Math.cos(0), poly.y + poly.radius * Math.sin(0));
+            this.visibleCanvas.ctx.moveTo(x + poly.radius * Math.cos(0), y + poly.radius * Math.sin(0));
             for (var i = 1; i <= poly.sides; i += 1) {
-                this.visibleCanvas.ctx.lineTo(poly.x + poly.radius * Math.cos(i * 2 * Math.PI / poly.sides), poly.y + poly.radius * Math.sin(i * 2 * Math.PI / poly.sides));
+                this.visibleCanvas.ctx.lineTo(x + poly.radius * Math.cos(i * 2 * Math.PI / poly.sides), y + poly.radius * Math.sin(i * 2 * Math.PI / poly.sides));
             }
             if (poly.isFilled) {
-                this.visibleCanvas.ctx.fillStyle;
+                this.visibleCanvas.ctx.fillStyle = poly.fillColor;
+                this.visibleCanvas.ctx.fill();
             }
             if (poly.isOutlined) {
                 this.visibleCanvas.ctx.strokeStyle = poly.outlineColor;
