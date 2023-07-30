@@ -3,13 +3,12 @@ import { TitlePage } from "./titlePage.js";
 import { Renderer } from "./renderer.js";
 export class ApplicationState {
     constructor() {
-        this.update = () => {
-            const inputs = this.getInputs();
+        this.update = (inputStates) => {
             if (this.titlePage) {
-                this.titlePage.update(inputs);
+                this.titlePage.update(inputStates);
             }
             else if (this.gameState) {
-                this.gameState.update(inputs);
+                this.gameState.update(inputStates);
             }
         };
         this.startGame = () => {

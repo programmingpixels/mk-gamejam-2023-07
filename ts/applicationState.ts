@@ -1,6 +1,7 @@
 import { GameState } from "./gameState.js"
 import { TitlePage } from "./titlePage.js"
 import { Renderer } from "./renderer.js"
+import { InputState } from "./inputs.js"
 
 export class ApplicationState {
     titlePage: TitlePage | undefined
@@ -12,14 +13,12 @@ export class ApplicationState {
         this.titlePage = new TitlePage(this.renderer.visibleCanvas.width, this.renderer.visibleCanvas.height)
     }
 
-    update = () => {
-        const inputs = this.getInputs()
-
+    update = (inputStates: InputState[]) => {
         if (this.titlePage) {
-            this.titlePage.update(inputs)
+            this.titlePage.update(inputStates)
         }
         else if (this.gameState) {
-            this.gameState.update(inputs)
+            this.gameState.update(inputStates)
         }
     }
 
