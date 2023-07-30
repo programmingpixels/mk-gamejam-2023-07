@@ -55,11 +55,34 @@ export class ApplicationState {
     }
     paintGameState = () => {
         // paint players
-        this.renderer.paintPolygon(
-            this.gameState?.players[0].polygon,
-            this.gameState?.players[0].x,
-            this.gameState?.players[0].y,
-            this.gameState?.players[0].rotation,
-        )
+        this.gameState?.players.forEach(player => {
+            this.renderer.paintPolygon(
+                player.polygon,
+                player.x,
+                player.y,
+                player.rotation,
+            )
+        })
+
+        // paint enemies
+        this.gameState?.enemies.forEach(enemy => {
+            this.renderer.paintPolygon(
+                enemy.polygon,
+                enemy.x,
+                enemy.y,
+                enemy.rotation,
+            )
+        })
+
+        // paint obstacles
+        this.gameState?.obstacles.forEach(obstacle => {
+            this.renderer.paintPolygon(
+                obstacle.polygon,
+                obstacle.x,
+                obstacle.y,
+                obstacle.rotation,
+            )
+        })
+
     }
 }
