@@ -2,6 +2,7 @@ import { InputState } from "./inputs.js"
 import { Polygon } from "./polygon.js"
 import { rgbToHex, toDegrees, toRadians } from "./utils.js"
 import { randomIntegerInclusive } from "./utils.js"
+import { CONFIG } from "./CONFIG.js"
 
 export interface Velocity {
     x: number
@@ -46,8 +47,8 @@ export class Body {
 
 export class Obstacle extends Body {
     constructor() {
-        super(50, 50, 50, { x: 0, y: 0 }, 0)
-        const polygon = new Polygon(0, 50, this.getHexColor(), this.getHexColor(), true, true, true, false)
+        super(Math.random()*CONFIG.canvasWidth, Math.random()*(CONFIG.canvasHeight-100), randomIntegerInclusive(1, 100), { x: 0, y: 0 }, 0)
+        const polygon = new Polygon(0, 25, this.getHexColor(), this.getHexColor(), true, true, true, false)
         this.polygon = polygon
     }
 }
@@ -57,7 +58,7 @@ export class Enemy extends Body {
 
     constructor() {
         let health = randomIntegerInclusive(3, 8)
-        super(100, 100, 50, { x: 0, y: 0 }, 0)
+        super(Math.random()*CONFIG.canvasWidth, Math.random()*(CONFIG.canvasHeight-100), randomIntegerInclusive(1, 100), { x: 0, y: 0 }, 0)
         const polygon = new Polygon(health, 20, this.getHexColor(), this.getHexColor(), true, true, true, false)
 
         this.health = health
@@ -69,7 +70,7 @@ export class Player extends Body {
     health: number
 
     constructor(health: number = 5) {
-        super(50, 50, 50, { x: 0, y: 0 }, 100)
+        super((CONFIG.canvasWidth/2), (CONFIG.canvasHeight/2), 50, { x: 0, y: 0 }, 100)
         this.health = health
         const polygon = new Polygon(3, 10, this.getHexColor(), this.getHexColor(), true, true, true, true)
         this.polygon = polygon
