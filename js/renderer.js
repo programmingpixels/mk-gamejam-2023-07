@@ -29,6 +29,13 @@ export class Renderer {
             this.visibleCanvas.ctx.textBaseline = 'middle';
             this.visibleCanvas.ctx.fillText(CONFIG.mainTitle, (CONFIG.canvasWidth / 2), (CONFIG.canvasHeight / 4));
         };
+        this.paintScore = (score) => {
+            this.visibleCanvas.ctx.fillStyle = "#11FF11";
+            this.visibleCanvas.ctx.font = "bold 36px Courier";
+            this.visibleCanvas.ctx.textAlign = 'left';
+            this.visibleCanvas.ctx.textBaseline = 'middle';
+            this.visibleCanvas.ctx.fillText(score.toString(), 20, 20);
+        };
         this.paintPressStartGame = (font, color) => {
             this.visibleCanvas.ctx.fillStyle = color;
             this.visibleCanvas.ctx.font = font;
