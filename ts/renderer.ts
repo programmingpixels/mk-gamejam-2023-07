@@ -64,14 +64,14 @@ export class Renderer {
     }
 
     paintPolygon = (poly: Polygon, x: number, y: number, rotation_d: number) => {
-        if ( poly.sides == 0 ) {
+        if (poly.sides == 0) {
             this.visibleCanvas.ctx.beginPath();
             this.visibleCanvas.ctx.arc(x, y, poly.radius, 0, 2 * Math.PI, false);
-            if ( poly.isFilled ) {
+            if (poly.isFilled) {
                 this.visibleCanvas.ctx.fillStyle = poly.fillColor;
                 this.visibleCanvas.ctx.fill();
             }
-            if ( poly.isOutlined ) {
+            if (poly.isOutlined) {
                 this.visibleCanvas.ctx.lineWidth = 1;
                 this.visibleCanvas.ctx.strokeStyle = poly.outlineColor;
                 this.visibleCanvas.ctx.stroke();
@@ -82,7 +82,7 @@ export class Renderer {
             this.visibleCanvas.ctx.beginPath();
             this.visibleCanvas.ctx.moveTo(x + poly.radius * Math.cos(rotation_r), y + poly.radius * Math.sin(rotation_r));
             for (var i = 1; i <= poly.sides; i += 1) {
-                this.visibleCanvas.ctx.lineTo(x + poly.radius * Math.cos(rotation_r+(i * 2 * Math.PI / poly.sides)), y + poly.radius * Math.sin(rotation_r+(i * 2 * Math.PI / poly.sides)));
+                this.visibleCanvas.ctx.lineTo(x + poly.radius * Math.cos(rotation_r + (i * 2 * Math.PI / poly.sides)), y + poly.radius * Math.sin(rotation_r + (i * 2 * Math.PI / poly.sides)));
             }
             if (poly.isFilled) {
                 this.visibleCanvas.ctx.fillStyle = poly.fillColor

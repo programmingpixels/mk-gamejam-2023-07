@@ -1,6 +1,6 @@
 import { InputState } from "./inputs.js"
 import { Polygon } from "./polygon.js"
-import { toDegrees, toRadians } from "./utils.js"
+import { rgbToHex, toDegrees, toRadians } from "./utils.js"
 import { randomIntegerInclusive } from "./utils.js"
 
 export interface Velocity {
@@ -16,6 +16,13 @@ export class Body {
     mass: number
     rotation: number
     polygon: Polygon
+
+    getHexColor = () => {
+        let r = 255 * (this.color / 100)
+        let g = 0
+        let b = 255 * (1 - (this.color / 100))
+        return rgbToHex(r, g, b)
+    }
 
     constructor(x: number, y: number, color: number, velocity: Velocity, mass: number, polygon: Polygon) {
         this.x = x

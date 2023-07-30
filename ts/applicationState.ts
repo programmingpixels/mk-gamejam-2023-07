@@ -51,7 +51,7 @@ export class ApplicationState {
         }
         this.renderer.paintTitle("bold 36px Courier", "#11FF11")
         this.renderer.paintPressStartGame("bold 28px Courier", this.titlePage.stars[0].getColorHex())
-        this.renderer.paintPolygon(this.titlePage.polygon, 500, 500, 11)
+        this.renderer.paintPolygon(this.titlePage.polygon, 500, 300, 11)
     }
     paintGameState = () => {
         // paint players
