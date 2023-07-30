@@ -8,6 +8,10 @@ export class GameState {
             this.lastUpdated = updateTime;
             // update the player location, direction, velocity
             this.players.forEach(player => { player.update(timeDelta, inputStates[0]); });
+            // update each obstacble location
+            this.obstacles.forEach(obstacle => { obstacle.update(timeDelta); });
+            // add ballistics
+            // TODO: add ballistics
             // cycle obstacles every 3 seconds
             if ((updateTime - this.lastObstacleCreated) > 3000) {
                 this.removeOldestObstacle();
