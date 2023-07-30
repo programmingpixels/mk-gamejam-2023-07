@@ -61,10 +61,10 @@ export class Player extends Body {
                 this.rotation += 3;
             }
             if (inputState.up) {
-                this.applyForce(this.rotation, 0.03, timeDelta);
+                this.applyForce(this.rotation, 0.02, timeDelta);
             }
             if (inputState.down) {
-                this.applyForce(this.rotation, -0.03, timeDelta);
+                this.applyForce(this.rotation, -0.02, timeDelta);
             }
             // update position
             this.x += this.velocity.x * timeDelta;
