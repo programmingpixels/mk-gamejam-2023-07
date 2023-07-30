@@ -7,6 +7,7 @@ export class ApplicationState {
     titlePage: TitlePage | undefined
     gameState: GameState | undefined
     renderer: Renderer
+    freeze: boolean = false
 
     constructor() {
         this.renderer = new Renderer()
@@ -14,13 +15,19 @@ export class ApplicationState {
     }
 
     update = (inputStates: InputState[]) => {
+        if (this.freeze) {
+            return
+        }
+
         if (this.titlePage) {
             if (!this.titlePage.update(inputStates)) {
                 this.startGame()
             }
         }
         else if (this.gameState) {
-            this.gameState.update(inputStates)
+            if (!this.gameState.update(inputStates)) {
+                this.freeze = true
+            }
         }
     }
 
@@ -64,15 +71,15 @@ export class ApplicationState {
             )
         })
 
-        // paint enemies
-        this.gameState?.enemies.forEach(enemy => {
-            this.renderer.paintPolygon(
-                enemy.polygon,
-                enemy.x,
-                enemy.y,
-                enemy.rotation,
-            )
-        })
+        // // paint enemies
+        // this.gameState?.enemies.forEach(enemy => {
+        //     this.renderer.paintPolygon(
+        //         enemy.polygon,
+        //         enemy.x,
+        //         enemy.y,
+        //         enemy.rotation,
+        //     )
+        // })
 
         // paint obstacles
         this.gameState?.obstacles.forEach(obstacle => {
@@ -84,5 +91,7 @@ export class ApplicationState {
             )
         })
 
+        // paint score
+        this.renderer.paintScore(this.gameState?.score)
     }
 }
